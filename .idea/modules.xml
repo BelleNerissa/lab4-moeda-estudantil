@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Código/Back end/SME/SistemaMoedaEstudantil.iml" filepath="$PROJECT_DIR$/Código/Back end/SME/SistemaMoedaEstudantil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Sistema_de_Moeda_Estudantil_PUC_Minas.iml" filepath="$PROJECT_DIR$/.idea/Sistema_de_Moeda_Estudantil_PUC_Minas.iml" />
+    </modules>
+  </component>
+</project>
