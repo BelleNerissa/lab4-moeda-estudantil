@@ -1,0 +1,15 @@
+RF001 - Os usuários alunos devem realizar cadastro no sistema e informar dados pessoais ( nome, email, CPF, RG, endereço, instituição de ensino e curso.
+
+RF002 - As instituições participantes já estão pré-cadastradas no sistema, para que o aluno selecione.
+
+RF003 - Os professores já estarão pré-cadastrados no sistema, com nome, CPF e departamento vinculados com uma Instituição.
+
+RF004 - Como professor, necessito ter a minha disposição moedas para distribuir aos alunos, com uma mensagem.
+
+RF005 - Como professor, necessito consultar o saldo atual de moedas
+
+RF006 - Como aluno, necessito ser notificado quando receber moedas de algum professor e ser capaz de consultar meu saldo para realizar trocas no sistema.
+
+RF007 - Como funcionário de uma empresa, quero me cadastrar no sistema e cadastrar vantagens.
+
+RF008 - Todos os usuários, alunos, professores e empresas precisam ter um login e senha para acessar o sistema.
