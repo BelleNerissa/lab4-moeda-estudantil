@@ -1,50 +1,96 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Header from "../Components/Header/header";
+import CadastrarAluno from "../pages/Forms/CadastrarAluno/cadastrarAluno";
+import EditarAluno from "../pages/Forms/EditarAluno/editarAluno";
 import Aluno from "../pages/Aluno/aluno";
-import CadastrarAluno from "../pages/CadastrarAluno/cadastrarAluno";
-import CadastrarEmpresa from "../pages/CadastrarEmpresa/cadastrarEmpresa";
-import EditarAluno from "../pages/EditarAluno/editarAluno";
-import EditarEmpresa from "../pages/EditarEmpresa/editarEmpresa";
-import Empresa from "../pages/Empresa/empresa";
+import CadastrarEmpresa from "../pages/Forms/CadastrarEmpresa/cadastrarEmpresa";
+import EditarEmpresa from "../pages/Forms/EditarEmpresa/editarEmpresa";
+import EditarProfessor from "../pages/Forms/EditarProfessor/editarProfessor";
+import SignIn from "../pages/Login/login";
 import Lista from "../pages/Lista/lista";
+import RouterAuth from "./routerAuth";
+import Empresa from "../pages/Empresa/empresa";
+import Professor from "../pages/Professor/professor";
 
 const Rotas = () => (
   <BrowserRouter>
-    <Routes>
-      <Route path="/" caseSensitive={false} element={<Lista />} />
-    </Routes>
-    <Routes>
-      <Route path="/aluno/:id" caseSensitive={false} element={<Aluno />} />
-    </Routes>
-    <Routes>
-      <Route path="/empresa/:id" caseSensitive={false} element={<Empresa />} />
-    </Routes>
+    <Header />
     <Routes>
       <Route
         path="/cadastro/aluno"
         caseSensitive={false}
         element={<CadastrarAluno />}
       />
-    </Routes>
-    <Routes>
       <Route
         path="/cadastro/empresa"
         caseSensitive={false}
         element={<CadastrarEmpresa />}
       />
-    </Routes>
-    <Routes>
+      <Route
+        path="/aluno/:id"
+        caseSensitive={false}
+        element={
+          <RouterAuth>
+            <Aluno />
+          </RouterAuth>
+        }
+      />
       <Route
         path="/editar/aluno/:id"
         caseSensitive={false}
-        element={<EditarAluno />}
+        element={
+          <RouterAuth>
+            <EditarAluno />
+          </RouterAuth>
+        }
       />
-    </Routes>
-    <Routes>
       <Route
-        path="/editar/empresa/:id"
+        path="/empresa/:id"
         caseSensitive={false}
-        element={<EditarEmpresa />}
+        element={
+          <RouterAuth>
+            <Empresa />
+          </RouterAuth>
+        }
       />
+      <Route
+        path="editar/empresa/:id"
+        caseSensitive={false}
+        element={
+          <RouterAuth>
+            <EditarEmpresa />
+          </RouterAuth>
+        }
+      />
+      <Route
+        path="/professor/:id"
+        caseSensitive={false}
+        element={
+          <RouterAuth>
+            <Professor />
+          </RouterAuth>
+        }
+      />
+      <Route
+        path="editar/professor/:id"
+        caseSensitive={false}
+        element={
+          <RouterAuth>
+            <EditarProfessor />
+          </RouterAuth>
+        }
+      />
+      <Route path="/login" caseSensitive={false} element={<SignIn />} />
+      <Route
+        path="/dashboard"
+        caseSensitive={false}
+        element={
+          <RouterAuth>
+            <Lista />
+          </RouterAuth>
+        }
+      />
+      <Route path="/" element={<Navigate to="/login" />} />
     </Routes>
   </BrowserRouter>
 );
