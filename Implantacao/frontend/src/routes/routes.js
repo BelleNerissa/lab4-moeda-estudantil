@@ -10,11 +10,11 @@ import SignIn from "../pages/Login/login";
 import Lista from "../pages/Lista/lista";
 import RouterAuth from "./routerAuth";
 import Empresa from "../pages/Empresa/empresa";
+import Wrapper from "../pages/Wrapper/wrapper";
 import Professor from "../pages/Professor/professor";
 
 const Rotas = () => (
   <BrowserRouter>
-    <Header />
     <Routes>
       <Route
         path="/cadastro/aluno"
@@ -31,7 +31,9 @@ const Rotas = () => (
         caseSensitive={false}
         element={
           <RouterAuth>
-            <Aluno />
+            <Wrapper>
+              <Aluno />
+            </Wrapper>
           </RouterAuth>
         }
       />
@@ -40,7 +42,9 @@ const Rotas = () => (
         caseSensitive={false}
         element={
           <RouterAuth>
-            <EditarAluno />
+            <Wrapper>
+              <EditarAluno />
+            </Wrapper>
           </RouterAuth>
         }
       />
@@ -49,7 +53,9 @@ const Rotas = () => (
         caseSensitive={false}
         element={
           <RouterAuth>
-            <Empresa />
+            <Wrapper>
+              <Empresa />
+            </Wrapper>
           </RouterAuth>
         }
       />
@@ -58,7 +64,9 @@ const Rotas = () => (
         caseSensitive={false}
         element={
           <RouterAuth>
-            <EditarEmpresa />
+            <Wrapper>
+              <EditarEmpresa />
+            </Wrapper>
           </RouterAuth>
         }
       />
@@ -67,7 +75,9 @@ const Rotas = () => (
         caseSensitive={false}
         element={
           <RouterAuth>
-            <Professor />
+            <Wrapper>
+              <Professor />
+            </Wrapper>
           </RouterAuth>
         }
       />
@@ -76,7 +86,9 @@ const Rotas = () => (
         caseSensitive={false}
         element={
           <RouterAuth>
-            <EditarProfessor />
+            <Wrapper>
+              <EditarProfessor />
+            </Wrapper>
           </RouterAuth>
         }
       />
@@ -86,7 +98,9 @@ const Rotas = () => (
         caseSensitive={false}
         element={
           <RouterAuth>
-            <Lista />
+            <Wrapper>
+              <Lista />
+            </Wrapper>
           </RouterAuth>
         }
       />

@@ -44,25 +44,24 @@ function Aluno() {
       console.log(err);
     }
   }
-
   useEffect(() => {
-    api.get(`/aluno/mostrar/id/${id}`).then((res) => setAluno(res.data));
+    api.get(`/aluno/mostrar/id/${id}`).then((res) => {
+      setAluno(res.data);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        alunoId: res.data.id,
+      }));
+    });
 
-    api
-      .get(`/transacao/listar/aluno?id=${id}`)
-      .then((res) => setTransacoes(res.data));
+    api.get(`/transacao/listar/aluno?id=${id}`).then((res) => setTransacoes(res.data));
+  }, [id]);
 
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      alunoId: aluno.id,
-    }));
-  }, [id, aluno]);
 
   const compras = aluno.compras !== undefined ? aluno.compras : [];
 
   return (
     <div className="container mt-5">
-      <div className="card" style={{ backgroundColor: "rgba(255, 255, 255, 0.6)" }}>
+      <div className="card" style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
         <div className="card-body">
           <div className="centered-container">
             <h1>Aluno</h1>
@@ -136,7 +135,7 @@ function Aluno() {
                     "Ainda não foram realizadas transações"
                   )}
                 </div>
-                <div>
+                {/* <div>
                   {compras.length > 0 ? (
                     <>
                       <table className="table table-bordered">
@@ -172,10 +171,17 @@ function Aluno() {
                   ) : (
                     "Você ainda não comprou nada"
                   )}
-                </div>
+                </div> */}
                 <br></br>
-                <button onClick={(e) => handleClick(e)} className="btn btn-danger btn-block"> Deletar </button>
-                <Link className="btn btn-link text-dark" to={`/editar/aluno/${id}`}>Editar Aluno</Link>
+                <div className="row">
+                  <div className="d-flex justify-content-start">
+                    <button onClick={(e) => handleClick(e)} className="btn btn-danger mx-2">Deletar</button>
+                    <Link to={`/editar/aluno/${id}`}>
+                      <button className="btn btn-primary">Editar Aluno</button>
+                    </Link>
+                  </div>
+                </div>
+
               </>
             )}
             {isProfessor() && (

@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../services/service";
+import InputMask from "react-input-mask";
 
 export default function EditarAluno() {
   const [formData, setFormData] = React.useState({});
@@ -35,7 +36,7 @@ export default function EditarAluno() {
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <div className="card p-4" style={{ backgroundColor: "rgba(255, 255, 255, 0.6)" }}>
+          <div className="card p-5 mb-2" style={{ backgroundColor: "rgba(255, 255, 255, 0.8" }}>
             <h1>Editar {aluno.nome}</h1>
             <form onSubmit={handleSubmit} className="col-md-12">
               <div className="mb-3">
@@ -76,8 +77,10 @@ export default function EditarAluno() {
               </div>
               <div className="mb-3">
                 <label htmlFor="cpf" className="form-label">CPF</label>
-                <input
+                <InputMask
                   type="text"
+                  mask="999.999.999-99"
+                  maskChar="_"
                   className="form-control"
                   id="cpf"
                   placeholder="CPF"
@@ -88,8 +91,10 @@ export default function EditarAluno() {
               </div>
               <div className="mb-3">
                 <label htmlFor="rg" className="form-label">RG</label>
-                <input
+                <InputMask
                   type="text"
+                  mask="99.999.999-9"
+                  maskChar="_"
                   className="form-control"
                   id="rg"
                   placeholder="RG"

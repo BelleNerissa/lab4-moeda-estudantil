@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   isAuthenticated,
@@ -10,6 +10,21 @@ import {
 import "./styles.css";
 
 const Header = () => {
+  const [authenticated, setAuthenticated] = useState(isAuthenticated());
+
+  const checkAuthentication = () => {
+    setAuthenticated(isAuthenticated());
+  };
+
+  // Adicione o ouvinte quando o componente for montado.
+
+  useEffect(() => {
+    // Defina um ouvinte para o estado de autenticação.
+    // Isso garantirá que a função isAuthenticated() seja verificada continuamente.
+    checkAuthentication();
+  });
+
+
   return (
     <>
       <header className="navbar navbar-expand-lg navbar-light bg-secondary">
@@ -17,7 +32,7 @@ const Header = () => {
           <Link className="navbar-brand" to="/">
             <h2 className="text-light">Sistema de Moedas Estudantil</h2>
           </Link>
-          {isAuthenticated() && (
+          {authenticated && (
             <div className="ml-auto">
               <ul className="navbar-nav">
                 <li className="nav-item">
@@ -30,23 +45,21 @@ const Header = () => {
                     Listagem
                   </Link>
                 </li>
-                {isEmpresa() && (
+                {isEmpresa() ? (
                   <li className="nav-item">
                     <Link className="nav-link text-white" to={`/empresa/${getId()}`}>
                       Minha Conta
                     </Link>
                   </li>
-                )}
-                <li className="nav-item">
+                ) : ( <li className="nav-item">
                   <Link
-                    className={`nav-link text-light ${
-                      isEmpresa() ? "ml-2" : "" // Add ml-2 margin to balance spacing
-                    }`}
+                    className={`nav-link text-light ${isEmpresa() ? "ml-2" : "" // Add ml-2 margin to balance spacing
+                      }`}
                     to={`/${getType()}/${getId()}`}
                   >
                     Minha Conta
                   </Link>
-                </li>
+                </li>)}
                 <li className="nav-item">
                   <button
                     className="btn btn-danger ml-2" // Add ml-2 margin to balance spacing

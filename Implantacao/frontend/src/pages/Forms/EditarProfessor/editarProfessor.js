@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../services/service";
+import InputMask from "react-input-mask";
 
 export default function EditarProfessor() {
   const [formData, setFormData] = React.useState({});
@@ -30,7 +31,7 @@ export default function EditarProfessor() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card p-4">
-            <h1>Editar {formData.nome}</h1>
+            <h1 className="text-center mb-4">Editar {formData.nome}</h1>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <input
@@ -63,8 +64,10 @@ export default function EditarProfessor() {
                 />
               </div>
               <div className="mb-3">
-                <input
+                <InputMask
                   type="text"
+                  mask="999.999.999-99"
+                  maskChar="_"
                   className="form-control"
                   placeholder="CPF"
                   onChange={handleChange}

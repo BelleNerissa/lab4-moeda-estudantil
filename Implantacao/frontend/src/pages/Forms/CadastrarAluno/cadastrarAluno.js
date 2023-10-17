@@ -1,6 +1,7 @@
 import React from "react";
 import api from "../../../services/service";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import InputMask from "react-input-mask";
 
 export default function CadastrarAluno() {
   const [formData, setFormData] = React.useState({
@@ -70,8 +71,10 @@ export default function CadastrarAluno() {
                 />
               </div>
               <div className="mb-3">
-                <input
+                <InputMask
                   type="text"
+                  mask="999.999.999-99"
+                  maskChar="_"
                   className="form-control"
                   placeholder="CPF"
                   onChange={handleChange}
@@ -80,8 +83,10 @@ export default function CadastrarAluno() {
                 />
               </div>
               <div className="mb-3">
-                <input
+                <InputMask
                   type="text"
+                  mask="99.999.999-9"
+                  maskChar="_"
                   className="form-control"
                   placeholder="RG"
                   onChange={handleChange}

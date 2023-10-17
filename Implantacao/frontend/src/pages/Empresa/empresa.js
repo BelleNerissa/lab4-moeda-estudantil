@@ -70,143 +70,139 @@ function Empresa() {
 
   const vantagens = empresa.vantagems !== undefined ? empresa.vantagems : [];
   return (
-    <>
-      <div className="centered-container">
-        <h1>Empresa {empresa.nome}</h1>
-        <table>
-          <tr>
-            <th>Nome:</th>
-            <td>{empresa.nome}</td>
-          </tr>
-          <tr>
-            <th>CNPJ:</th>
-            <td>{empresa.cnpj}</td>
-          </tr>
-          <tr>
-            <th>Email:</th>
-            <td>{empresa.email}</td>
-          </tr>
-          {myAccount ? (
-            <tr>
-              <th>Saldo:</th>
-              <td>{empresa.saldo}</td>
-            </tr>
-          ) : (
-            ""
-          )}
-        </table>
-        <br></br>
-        <h2>Vantagens</h2>
-        {/* =========
-            VANTAGENS
-        ========= */}
-        {vantagens.length > 0 ? (
-          <>
-            <table>
+    <div className="container mt-5 mb-5">
+      <div className="card" style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
+        <div className="card-body centered-container">
+          <h1 className="card-title ">Empresa {empresa.nome}</h1>
+          <table className="table table-bordered">
+            <tbody>
+              <tr>
+                <th className="bg-secondary text-white">Nome:</th>
+                <td>{empresa.nome}</td>
+              </tr>
+              <tr>
+                <th className="bg-secondary text-white">CNPJ:</th>
+                <td>{empresa.cnpj}</td>
+              </tr>
+              <tr>
+                <th className="bg-secondary text-white">Email:</th>
+                <td>{empresa.email}</td>
+              </tr>
+              {myAccount && (
+                <tr>
+                  <th className="bg-secondary text-white">Saldo:</th>
+                  <td>{empresa.saldo}</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+
+          <h2>Vantagens</h2>
+          {vantagens.length > 0 ? (
+            <table className="table">
               <caption>Vantagens cadastradas no sistema</caption>
               <thead>
                 <tr>
-                  <th></th>
-                  <th>Descricao</th>
-                  <th>Valor</th>
-                  {isAluno() || myAccount ? <th scope="row">Acoes</th> : ""}
+                  <th className="bg-secondary text-white"></th>
+                  <th className="bg-secondary text-white">Descricao</th>
+                  <th className="bg-secondary text-white">Valor</th>
+                  {isAluno() && <th scope="row" className="bg-secondary text-white">Ações</th>}
                 </tr>
               </thead>
               <tbody>
                 {vantagens.map((vantagem) => (
-                  <>
-                    <tr>
-                      <th scope="row">
-                        <img
-                          src={
-                            vantagem.imagem
-                              ? vantagem.imagem
-                              : "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022.jpg"
-                          }
-                          width="100"
-                        />
+                  <tr key={vantagem.id}>
+                    <th scope="row">
+                      <img
+                        src={
+                          vantagem.imagem
+                            ? vantagem.imagem
+                            : "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022.jpg"
+                        }
+                        width="100"
+                      />
+                    </th>
+                    <th scope="row">{vantagem.descricao}</th>
+                    <th scope="row">{vantagem.valor}</th>
+                    {isAluno() && (
+                      <th scope="row" >
+                        <button
+                          type="button"
+                          onClick={() => {
+                            handleCompra(vantagem.id);
+                          }}
+                          className="btn btn-primary"
+                        >
+                          Comprar
+                        </button>
                       </th>
-                      <th scope="row">{vantagem.descricao}</th>
-                      <th scope="row">{vantagem.valor}</th>
-                      {isAluno() ? (
-                        <th scope="row">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              handleCompra(vantagem.id);
-                            }}
-                          >
-                            Comprar
-                          </button>
-                        </th>
-                      ) : (
-                        ""
-                      )}
-                      {myAccount ? (
-                        <th scope="row">
-                          {" "}
-                          <button
-                            type="button"
-                            onClick={() => {
-                              handleDelete(vantagem.id);
-                            }}
-                          >
-                            Deletar
-                          </button>
-                        </th>
-                      ) : (
-                        ""
-                      )}
-                    </tr>
-                  </>
+                    )}
+                    {/* {myAccount && (
+                      <th scope="row">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            handleDelete(vantagem.id);
+                          }}
+                          className="btn btn-danger"
+                        >
+                          Deletar
+                        </button>
+                      </th>
+                    )} */}
+                  </tr>
                 ))}
               </tbody>
             </table>
-          </>
-        ) : (
-          "Nao existem vantagens cadastradas"
-        )}
-        {/* =========
-            ACOES
-        ========= */}
-        {myAccount ? (
-          <>
-            <h3>Cadastrar Vantagem</h3>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Valor"
-                onChange={handleChange}
-                name="valor"
-                value={formData.valor}
-              />
-              <input
-                type="text"
-                placeholder="Descricao"
-                onChange={handleChange}
-                name="descricao"
-                value={formData.descricao}
-              />
-              <input
-                type="text"
-                placeholder="URL Imagem"
-                onChange={handleChange}
-                name="imagem"
-                value={formData.imagem}
-              />
-              <button>Enviar</button>
-            </form>
-            <br></br>
-            <div>
-              <button onClick={(e) => handleClick(e)}> Deletar </button>
-              <Link to={`/editar/empresa/${id}`}>Editar Empresa</Link>
-            </div>
-          </>
-        ) : (
-          ""
-        )}
+          ) : (
+            "Nao existem vantagens cadastradas"
+          )}
+
+          {myAccount && (
+            <>
+              <h3>Cadastrar Vantagem</h3>
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  placeholder="Valor"
+                  onChange={handleChange}
+                  name="valor"
+                  value={formData.valor}
+                  className="form-control"
+                />
+                <input
+                  type="text"
+                  placeholder="Descricao"
+                  onChange={handleChange}
+                  name="descricao"
+                  value={formData.descricao}
+                  className="form-control"
+                />
+                <input
+                  type="text"
+                  placeholder="URL Imagem"
+                  onChange={handleChange}
+                  name="imagem"
+                  value={formData.imagem}
+                  className="form-control"
+                />
+                <button type="submit" className="btn btn-primary mb-2">
+                  Enviar
+                </button>
+              </form>
+              <div>
+                <button onClick={(e) => handleClick(e)} className="btn btn-danger mx-2">
+                  Deletar
+                </button>
+                <Link to={`/editar/empresa/${id}`} className="btn btn-primary">
+                  Editar Empresa
+                </Link>
+              </div>
+            </>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../services/service";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import InputMask from "react-input-mask";
 
 export default function EditarEmpresa() {
   const [formData, setFormData] = React.useState({});
@@ -34,11 +35,15 @@ export default function EditarEmpresa() {
         <div className="col-md-6">
           <div className="card p-4">
             <h1 className="text-center">Editar Empresa</h1>
-            <form onSubmit={handleSubmit} className="card p-12">
+            <form onSubmit={handleSubmit} className="p-4">
               <div className="mb-3">
-                <input
+                <label htmlFor="cnpj" className="form-label">CNPJ</label>
+                <InputMask
                   type="text"
+                  mask="999.999.999-99"
+                  maskChar="_"
                   className="form-control"
+                  id="cnpj"
                   placeholder="CNPJ"
                   onChange={handleChange}
                   name="cnpj"
