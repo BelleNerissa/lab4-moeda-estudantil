@@ -72,7 +72,7 @@ function Empresa() {
   return (
     <div className="container mt-5 mb-5">
       <div className="card" style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
-        <div className="card-body centered-container">
+        <div className="card-body">
           <h1 className="card-title ">Empresa {empresa.nome}</h1>
           <table className="table table-bordered">
             <tbody>

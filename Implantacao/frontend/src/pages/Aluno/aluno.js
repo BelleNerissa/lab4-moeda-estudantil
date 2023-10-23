@@ -63,7 +63,7 @@ function Aluno() {
     <div className="container mt-5">
       <div className="card" style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
         <div className="card-body">
-          <div className="centered-container">
+          <div >
             <h1>Aluno</h1>
             <table className="table table-bordered">
               <tbody>
@@ -97,10 +97,11 @@ function Aluno() {
                 )}
               </tbody>
             </table>
-            {myAccount && (
+            {(myAccount || isProfessor()) && (
               <>
                 <h2>Extrato</h2>
-                <div>
+                <div className="mb-4">
+                  <h3>Transações</h3>
                   {transacoes.length > 0 ? (
                     <>
                       <table className="table table-bordered">
@@ -135,7 +136,10 @@ function Aluno() {
                     "Ainda não foram realizadas transações"
                   )}
                 </div>
-                {/* <div>
+                {console.log(compras)}
+                {console.log(transacoes)}
+                <div>
+                  <h3>Compras</h3>
                   {compras.length > 0 ? (
                     <>
                       <table className="table table-bordered">
@@ -171,11 +175,11 @@ function Aluno() {
                   ) : (
                     "Você ainda não comprou nada"
                   )}
-                </div> */}
+                </div>
                 <br></br>
                 <div className="row">
                   <div className="d-flex justify-content-start">
-                    <button onClick={(e) => handleClick(e)} className="btn btn-danger mx-2">Deletar</button>
+                    <button onClick={(e) => handleClick(e)} className="btn btn-danger mx-2">Deletar Aluno</button>
                     <Link to={`/editar/aluno/${id}`}>
                       <button className="btn btn-primary">Editar Aluno</button>
                     </Link>
@@ -185,9 +189,9 @@ function Aluno() {
               </>
             )}
             {isProfessor() && (
-              <>
+              <div className="centered-container">
                 {" "}
-                <h1>Enviar moedas</h1>
+                <h2>💸Enviar moedas💸</h2>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <input
@@ -209,9 +213,9 @@ function Aluno() {
                       value={formData.descricao || ""}
                     />
                   </div>
-                  <button type="submit" className="btn btn-primary">Enviar</button>
+                  <button type="submit" className="btn btn-success">Enviar</button>
                 </form>
-              </>
+              </div>
             )}
           </div>
         </div>

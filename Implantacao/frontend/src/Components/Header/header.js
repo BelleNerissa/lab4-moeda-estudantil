@@ -27,10 +27,10 @@ const Header = () => {
 
   return (
     <>
-      <header className="navbar navbar-expand-lg navbar-light bg-secondary">
+      <header className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "rgba(112, 129, 136, 0.8)" }}>
         <div className="container">
           <Link className="navbar-brand" to="/">
-            <h2 className="text-light">Sistema de Moedas Estudantil</h2>
+            <h2 className="text-warning">🥇SME🥇</h2>
           </Link>
           {authenticated && (
             <div className="ml-auto">
