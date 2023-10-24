@@ -64,7 +64,7 @@ function Aluno() {
       <div className="card" style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
         <div className="card-body">
           <div >
-            <h1>Aluno</h1>
+            <h1>{aluno.nome}</h1>
             <table className="table table-bordered">
               <tbody>
                 <tr>
@@ -75,26 +75,24 @@ function Aluno() {
                   <th className="bg-secondary text-white">Email:</th>
                   <td>{aluno.email}</td>
                 </tr>
-                {myAccount && (
-                  <>
-                    <tr>
-                      <th className="bg-secondary text-white">CPF:</th>
-                      <td>{aluno.cpf}</td>
-                    </tr>
-                    <tr>
-                      <th className="bg-secondary text-white">RG:</th>
-                      <td>{aluno.rg}</td>
-                    </tr>
-                    <tr>
-                      <th className="bg-secondary text-white">Endereco:</th>
-                      <td>{aluno.endereco}</td>
-                    </tr>
-                    <tr>
-                      <th className="bg-secondary text-white">Saldo:</th>
-                      <td>{aluno.saldo}</td>
-                    </tr>
-                  </>
-                )}
+                <>
+                  <tr>
+                    <th className="bg-secondary text-white">CPF:</th>
+                    <td>{aluno.cpf}</td>
+                  </tr>
+                  <tr>
+                    <th className="bg-secondary text-white">RG:</th>
+                    <td>{aluno.rg}</td>
+                  </tr>
+                  <tr>
+                    <th className="bg-secondary text-white">Endereco:</th>
+                    <td>{aluno.endereco}</td>
+                  </tr>
+                  <tr>
+                    <th className="bg-secondary text-white">Saldo:</th>
+                    <td>{aluno.saldo}</td>
+                  </tr>
+                </>
               </tbody>
             </table>
             {(myAccount || isProfessor()) && (

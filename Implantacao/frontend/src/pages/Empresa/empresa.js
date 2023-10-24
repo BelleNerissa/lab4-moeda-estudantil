@@ -88,12 +88,6 @@ function Empresa() {
                 <th className="bg-secondary text-white">Email:</th>
                 <td>{empresa.email}</td>
               </tr>
-              {myAccount && (
-                <tr>
-                  <th className="bg-secondary text-white">Saldo:</th>
-                  <td>{empresa.saldo}</td>
-                </tr>
-              )}
             </tbody>
           </table>
 
