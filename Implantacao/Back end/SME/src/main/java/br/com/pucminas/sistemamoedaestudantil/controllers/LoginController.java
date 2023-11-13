@@ -24,6 +24,10 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    /**
+     * Método lida com solicitações POST.
+     * @param dto dto do login.
+     * */
     @PostMapping
     public ResponseEntity<?> loginRequest(@RequestBody LoginRequestDTO dto){
         Usuario user;

@@ -22,6 +22,9 @@ public class TransacaoController {
 
 // TODO: Listar transacoes pelo Id do aluno/professor
 
+    /**
+     * Método lida com solicitações GET.
+     * */
     @GetMapping(value="/listar/professor")
     public ResponseEntity<?> findAllTransactionByProfessorId(@RequestParam("id") Integer id){
         List<TransacaoResponseDTO> list = service.findAllTransactionByProfessorId(id);
@@ -30,6 +33,10 @@ public class TransacaoController {
         return ResponseEntity.ok().body(list);
     }
 
+    /**
+     * Método lida com solicitações GET.
+     * @param id id do aluno.
+     * */
     @GetMapping(value="/listar/aluno")
     public ResponseEntity<?> findAllTransactionByAlunoId(@RequestParam("id") Integer id){
         List<TransacaoResponseDTO> list = service.findAllTransactionByAlunoId(id);
@@ -38,12 +45,20 @@ public class TransacaoController {
         return ResponseEntity.ok().body(list);
     }
 
+    /**
+     * Método lida com solicitações POST.
+     * @param dto dto do professor.
+     * */
     @PostMapping(value = "/cadastrar/byprofessor")
     public ResponseEntity<?> insertByProfessor (@RequestBody TransacaoRequestDTO dto) throws Exception {
         ResponseEntity resp = service.insertByProfessor(dto);
         return resp;
     }
 
+    /**
+     * Método lida com solicitações POST.
+     * @param dto dto do aluno.
+     * */
     @PostMapping(value = "/cadastrar/byaluno")
     public ResponseEntity<?> insertByAluno (@RequestBody TransacaoRequestDTO dto) throws Exception {
         ResponseEntity resp = service.insertByAluno(dto);

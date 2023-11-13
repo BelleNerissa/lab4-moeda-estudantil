@@ -27,6 +27,9 @@ public class VantagemController {
 
 // TODO: Listar transacoes pelo Id do aluno/professor
 
+    /**
+     * Método lida com solicitações GET.
+     * */
     @GetMapping(value = "/listar")
     public ResponseEntity<?> findAllVantagem(){
         List<Vantagem> list = service.listarVantagem();
@@ -35,7 +38,10 @@ public class VantagemController {
         return ResponseEntity.ok().body(list.stream().map(VantagemResponseDTO::new).collect(Collectors.toList()));
     }
 
-
+    /**
+     * Método lida com solicitações GET.
+     * @param id id da empresa.
+     * */
     @GetMapping(value = "/mostrar")
     public ResponseEntity<?> findVantagemByEmpresaId(@RequestParam("EmpresaId") Integer id){
         List<Vantagem> list = service.listarVantagemByEmpresaId(id);
@@ -44,6 +50,10 @@ public class VantagemController {
         return ResponseEntity.ok().body(list.stream().map(VantagemResponseDTO::new).collect(Collectors.toList()));
     }
 
+    /**
+     * Método lida com solicitações GET.
+     * @param id id da vantagem.
+     * */
     @GetMapping(value = "/mostrar/id/{id}")
     public ResponseEntity<?> findVantagemById(@PathVariable Integer id){
         Vantagem obj;
@@ -55,7 +65,10 @@ public class VantagemController {
         return ResponseEntity.ok().body(new VantagemResponseDTO(obj));
     }
 
-
+    /**
+     * Método lida com solicitações POST.
+     * @param objDto dto da vantagem.
+     * */
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<?> insert(@RequestBody VantagemRequestDTO objDto) {
         return ResponseEntity.ok().body(service.addVantagem(objDto));

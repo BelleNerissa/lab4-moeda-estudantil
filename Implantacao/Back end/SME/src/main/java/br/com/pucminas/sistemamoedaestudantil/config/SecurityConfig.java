@@ -27,6 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private List<String> allowedMethods = new ArrayList<>(Arrays.asList(""));
 
+    /**
+     * Configura a segurança da web para um aplicativo Spring, habilitando CORS, desabilitando CSRF, permitindo todas as solicitações independentemente da autenticação, e configurando o aplicativo para ser stateless
+     * */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable();

@@ -21,6 +21,14 @@ public class LoginService {
     @Autowired
     private EmpresaService empresaService;
 
+    /**
+     * Valida o login de um usuário com base no email e senha fornecidos.]
+     *
+     * @param email O email do usuário a ser validado.
+     * @param senha A senha do usuário a ser validada.
+     * @return O {@link Usuario} correspondente se as credenciais forem válidas.
+     * @throws IllegalArgumentException Se as credenciais não corresponderem a nenhum usuário ou se a senha estiver incorreta.
+     */
     public Usuario validarLogin(String email, String senha) throws IllegalArgumentException{
         Usuario user;
         user = alunoService.findByEmail(email);
@@ -61,6 +69,12 @@ public class LoginService {
 //        return obj;
 //    }
 
+    /**
+     * Verifica se um email já está cadastrado em algum dos serviços de usuário (aluno, professor, empresa).
+     *
+     * @param email O email a ser verificado.
+     * @return {@code true} se o email já estiver cadastrado em algum serviço; {@code false} caso contrário.
+     */
     public boolean emailJaCadastrado(String email){
         Usuario user;
         user = alunoService.findByEmail(email);

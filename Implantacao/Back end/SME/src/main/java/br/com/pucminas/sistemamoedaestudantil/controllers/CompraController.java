@@ -19,6 +19,10 @@ public class CompraController {
     private CompraService service;
 
 
+    /**
+     * Método lida com solicitações GET.
+     * @param id id do aluno.
+     * */
     @GetMapping(value="/mostrar")
     public ResponseEntity<?> findAllComprasByAlunoId(@RequestParam Integer id){
         try{
@@ -29,6 +33,10 @@ public class CompraController {
         }
     }
 
+    /**
+     * Método lida com solicitações GET
+     * @param id id da vantagem.
+     * */
     @GetMapping(value = "/mostar/vantagem")
     public ResponseEntity<?> findAllComprasByVantagemId(@RequestParam Integer id){
         try{
@@ -39,6 +47,10 @@ public class CompraController {
         }
     }
 
+    /**
+     * Método lida com solicitações POST.
+     * @param objDTO dto da compra.
+     * */
     @PostMapping(value="/cadastrar")
     public ResponseEntity<?> insert(@RequestBody CompraRequestDTO objDTO){
         try{

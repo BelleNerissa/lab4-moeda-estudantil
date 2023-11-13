@@ -17,6 +17,9 @@ public class InstituicaoController {
     @Autowired
     private InstituicaoService service;
 
+    /**
+     * Método lida com solicitações GET.
+     * */
     @GetMapping(value = "/listar")
     public ResponseEntity listar(){
         List<InstituicaoResponseDTO> list = service.findAll();
@@ -25,23 +28,40 @@ public class InstituicaoController {
         return ResponseEntity.ok().body(list);
     }
 
+    /**
+     * Método lida com solicitações GET.
+     * @param id id da instituição.
+     * */
     @GetMapping(value = "/mostrar/id/{id}")
     public ResponseEntity<InstituicaoResponseDTO> show(@PathVariable Integer id) throws Exception {
         InstituicaoResponseDTO obj = new InstituicaoResponseDTO(service.getById(id));
         return ResponseEntity.ok().body(obj);
     }
 
+    /**
+     * Método lida com solicitações POST.
+     * @param dto dto da instituição.
+     * */
     @PostMapping(value = "/cadastrar")
     public ResponseEntity insert (@RequestBody InstituicaoRequestDTO dto) {
         ResponseEntity resp = service.insert(dto);
         return resp;
     }
 
+    /**
+     * Método lida com solicitações DELETE
+     * @param id id da instituição.
+     * */
     @DeleteMapping  (value = "/deletar/id/{id}")
     public void  delete (@PathVariable Integer id) throws Exception {
         service.deleteById(id);
     }
 
+    /**
+     * Método lida com solicitações PUT
+     * @param id id da instituição.
+     * @param obj objeto da instituição.
+     * */
     @PutMapping  (value = "/update/id/{id}")
     public ResponseEntity<Instituicao>  delete (@PathVariable Integer id, @RequestBody Instituicao obj ) throws Exception {
         Instituicao instituicaoAtualizado = service.update(id,obj);

@@ -22,12 +22,24 @@ import java.util.stream.Collectors;
 public class InstituicaoService {
     private InstituicaoRepository repository;
 
+    /**
+     * Busca todas as instituições disponíveis no repositório e as converte para {@link InstituicaoResponseDTO}.
+     *
+     * @return Uma lista de {@link InstituicaoResponseDTO} representando todas as instituições encontradas.
+     */
     @Transactional
     public List<InstituicaoResponseDTO> findAll(){
         List<Instituicao> listResponse = repository.findAll();
         return listResponse.stream().map(obj -> new InstituicaoResponseDTO(obj)).collect(Collectors.toList());
     }
 
+    /**
+     * Busca uma instituição específica pelo ID.
+     *
+     * @param id O ID da instituição a ser buscada.
+     * @return A instituição encontrada.
+     * @throws Exception Se a instituição não for encontrada.
+     */
     @Transactional
     public Instituicao getById(Integer id) throws Exception {
         try{
@@ -39,12 +51,24 @@ public class InstituicaoService {
         }
     }
 
+    /**
+     * Insere uma nova instituição no repositório.
+     *
+     * @param objDTO O DTO da instituição a ser inserida.
+     * @return Uma {@link ResponseEntity} com o DTO da instituição inserida.
+     */
     @Transactional
     public ResponseEntity<InstituicaoRequestDTO> insert(InstituicaoRequestDTO objDTO){
         Instituicao obj = repository.save(objDTO.build());
         return ResponseEntity.ok().body(new InstituicaoRequestDTO(obj));
     }
 
+    /**
+     * Exclui uma instituição pelo ID.
+     *
+     * @param id O ID da instituição a ser excluída.
+     * @throws Exception Se a instituição não for encontrada ou se a exclusão violar a integridade dos dados.
+     */
     @Transactional
     public void deleteById(Integer id) throws Exception {
         getById(id);
@@ -55,6 +79,14 @@ public class InstituicaoService {
         }
     }
 
+    /**
+     * Atualiza as informações de uma instituição.
+     *
+     * @param id O ID da instituição a ser atualizada.
+     * @param obj O objeto {@link Instituicao} contendo as novas informações.
+     * @return A instituição atualizada.
+     * @throws Exception Se a instituição não for encontrada.
+     */
     public Instituicao update(Integer id, Instituicao obj) throws Exception {
         Instituicao newInstituicao = getById(id);
         newInstituicao.setNome(obj.getNome());

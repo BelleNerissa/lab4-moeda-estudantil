@@ -26,6 +26,10 @@ public class Empresa extends Usuario implements Serializable {
     private List<Vantagem> vantagems = new ArrayList<>();
     private final Integer roleID = 3;
 
+    /**
+     * Método que adiciona vantagem a empresa.
+     * @param obj recebe o objeto vantagem.
+     * */
     public void addVantagem(Vantagem obj)
     {
         vantagems.add(obj);

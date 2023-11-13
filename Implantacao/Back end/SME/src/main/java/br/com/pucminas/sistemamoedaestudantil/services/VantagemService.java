@@ -28,7 +28,13 @@ public class VantagemService {
     @Autowired
     private EmpresaService empresaService;
 
-
+    /**
+     * Busca uma vantagem específica pelo ID.
+     *
+     * @param id O ID da vantagem a ser buscada.
+     * @return A vantagem encontrada.
+     * @throws ObjectNotFoundException Se a vantagem não for encontrada.
+     */
     @Transactional
     public Vantagem getById(Integer id) throws ObjectNotFoundException {
         try{
@@ -42,6 +48,12 @@ public class VantagemService {
 
     }
 
+    /**
+     * Adiciona uma nova vantagem ao repositório.
+     *
+     * @param objDTO O DTO da vantagem a ser adicionada.
+     * @return A vantagem adicionada.
+     */
     @Transactional
     public Vantagem addVantagem(VantagemRequestDTO objDTO) {
             Empresa emp = empresaService.getById(objDTO.getEmpresaId());
@@ -50,6 +62,11 @@ public class VantagemService {
         return repository.save(vantagem);
     }
 
+    /**
+     * Lista todas as vantagens disponíveis.
+     *
+     * @return Uma lista de vantagens.
+     */
     @Transactional
     public List<Vantagem> listarVantagem() {
         List<Vantagem>  listaVantagem = repository.findAll();
@@ -58,6 +75,13 @@ public class VantagemService {
 
     }
 
+    /**
+     * Lista todas as vantagens associadas a uma empresa específica.
+     *
+     * @param id O ID da empresa.
+     * @return Uma lista de vantagens.
+     * @throws ObjectNotFoundException Se não forem encontradas vantagens para a empresa especificada.
+     */
     @Transactional
     public List<Vantagem> listarVantagemByEmpresaId(Integer id) throws ObjectNotFoundException{
         List<Vantagem> vantagens = repository.findAllByEmpresaId(id);
@@ -68,6 +92,12 @@ public class VantagemService {
          throw new ObjectNotFoundException(1, "Vantagem não encontrada.\n Id: " + id);
     }
 
+    /**
+     * Exclui uma vantagem pelo ID.
+     *
+     * @param id O ID da vantagem a ser excluída.
+     * @throws Exception Se a vantagem não for encontrada ou se a exclusão violar a integridade dos dados.
+     */
     @Transactional
     public void deleteById(Integer id) throws Exception {
         getById(id);

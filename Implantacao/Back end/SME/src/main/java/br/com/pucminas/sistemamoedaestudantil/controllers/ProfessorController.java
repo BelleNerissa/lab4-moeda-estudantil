@@ -19,6 +19,9 @@ public class ProfessorController {
     @Autowired
     private ProfessorService service;
 
+    /**
+     * Método lida com solicitações GET
+     * */
     @GetMapping(value = "/listar")
     public ResponseEntity listar(){
         List<ProfessorResponseDTO> list = service.findAll();
@@ -27,23 +30,40 @@ public class ProfessorController {
         return ResponseEntity.ok().body(list);
     }
 
+    /**
+     * Método lida com solicitações GET
+     * @param id id do professor..
+     * */
     @GetMapping(value = "/mostrar/id/{id}")
     public ResponseEntity<ProfessorResponseDTO> show(@PathVariable Integer id) throws Exception {
         ProfessorResponseDTO obj = new ProfessorResponseDTO(service.getById(id));
         return ResponseEntity.ok().body(obj);
     }
 
+    /**
+     * Método lida com solicitações POST
+     * @param dto dto do professor.
+     * */
     @PostMapping(value = "/cadastrar")
     public ResponseEntity insert (@RequestBody ProfessorRequestDTO dto) {
         ResponseEntity resp = service.insert(dto);
         return resp;
     }
 
+    /**
+     * Método lida com solicitações DELETE
+     * @param id id do professor.
+     * */
     @DeleteMapping  (value = "/deletar/id/{id}")
     public void  delete (@PathVariable Integer id) throws Exception {
         service.deleteById(id);
     }
 
+    /**
+     * Método lida com solicitações PUT
+     * @param id id do professor.
+     * @param obj objeto do professor.
+     * */
     @PutMapping  (value = "/update/id/{id}")
     public ResponseEntity<Professor>  delete (@PathVariable Integer id, @RequestBody Professor obj ) throws Exception {
         Professor professorAtualizado = service.update(id,obj);
