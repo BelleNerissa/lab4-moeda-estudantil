@@ -18,6 +18,7 @@ public class CompraResponseDTO {
     private Integer id;
     private Integer alunoId;
     private List<VantagemResponseDTO> vantagens;
+    private String alunoEmail;
     private Double valor;
 
     public CompraResponseDTO(Compra obj){
@@ -26,5 +27,6 @@ public class CompraResponseDTO {
         this.alunoId = obj.getAluno().getId();
         this.valor = obj.getValor();
         this.vantagens= obj.getVantagens().stream().map(VantagemResponseDTO::new).collect(Collectors.toList());
+        this.alunoEmail = obj.getAluno().getEmail();
     }
 }
