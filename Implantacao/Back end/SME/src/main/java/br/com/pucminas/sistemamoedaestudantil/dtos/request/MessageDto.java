@@ -1,4 +1,5 @@
 package br.com.pucminas.sistemamoedaestudantil.dtos.request;
+
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -8,7 +9,10 @@ import javax.validation.constraints.NotBlank;
 public class MessageDto {
 
     @NotBlank
-    private String owner;
+    private String ownerAluno;
+
+    @NotBlank
+    private String ownerEmpresa;
 
     @NotBlank
     @Email

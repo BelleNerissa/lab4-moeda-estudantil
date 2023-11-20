@@ -24,6 +24,10 @@ public class Compra implements Serializable {
     @JsonBackReference
     private Aluno aluno;
 
+    @ManyToOne
+    @JsonBackReference
+    private Empresa empresa;
+
     @OneToMany
     private List<Vantagem> vantagens = new ArrayList<>();
 

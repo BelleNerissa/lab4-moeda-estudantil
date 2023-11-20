@@ -25,6 +25,10 @@ public class CompraService {
     private AlunoService alunoService;
 
     @Autowired
+    private EmpresaService empresaService;
+
+
+    @Autowired
     private VantagemService vantagemService;
 
     /**
@@ -109,6 +113,7 @@ public class CompraService {
     private Compra fromDTO(CompraRequestDTO objDTO){
         Compra obj = new Compra();
         obj.setAluno(alunoService.getById(objDTO.getAlunoId()));
+        obj.setEmpresa(empresaService.getById(objDTO.getEmpresaId()));
         obj.setValor(objDTO.getValor());
         obj.setVantagens(objDTO.getVantagensIds().stream().map(id -> vantagemService.getById(id)).collect(Collectors.toList()));
         obj.setId(objDTO.getId());

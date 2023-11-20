@@ -19,14 +19,17 @@ public class CompraRequestDTO {
 
     private Integer alunoId;
 
+    private Integer empresaId;
+
     private List<Integer> vantagensIds;
 
     private Double valor;
 
-    public CompraRequestDTO(Compra obj){
+    public CompraRequestDTO(Compra obj) {
         vantagensIds = new ArrayList<>();
         this.id = obj.getId();
         this.alunoId = obj.getAluno().getId();
+        this.empresaId = obj.getEmpresa().getId();
         this.vantagensIds = obj.getVantagens().stream().map(Vantagem::getId).collect(Collectors.toList());
         this.valor = obj.getValor();
     }

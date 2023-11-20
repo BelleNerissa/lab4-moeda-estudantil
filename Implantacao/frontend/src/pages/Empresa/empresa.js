@@ -47,11 +47,13 @@ function Empresa() {
       .then(() => window.location.reload(true));
   }
 
-  async function handleCompra(vantagemID) {
+  async function handleCompra(vantagemID, vantagemValor) {
     try {
       await api.post("/compra/cadastrar", {
         alunoId: getId(),
         vantagensIds: [vantagemID],
+        empresaId: id,
+        valor: vantagemValor
       });
       alert("Compra realizada!");
     } catch (err) {
@@ -123,7 +125,7 @@ function Empresa() {
                         <button
                           type="button"
                           onClick={() => {
-                            handleCompra(vantagem.id);
+                            handleCompra(vantagem.id, vantagem.valor);
                           }}
                           className="btn btn-primary"
                         >
