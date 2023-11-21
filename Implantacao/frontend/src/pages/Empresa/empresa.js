@@ -112,14 +112,15 @@ function Empresa() {
               <tbody>
                 {vantagens.map((vantagem) => (
                   <tr key={vantagem.id}>
-                    <th scope="row">
+                    <th scope="row" className="centered-container">
                       <img
                         src={
                           vantagem.imagem
                             ? vantagem.imagem
-                            : "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022.jpg"
+                            : "https://st2.depositphotos.com/1219867/8235/i/450/depositphotos_82350542-stock-photo-beautiful-gold-present-box-with.jpg"
                         }
-                        width="100"
+                        width="90"
+                        
                       />
                     </th>
                     <th scope="row">{vantagem.descricao}</th>
@@ -162,43 +163,45 @@ function Empresa() {
 
           {myAccount && (
             <>
-              <h3>Cadastrar Vantagem</h3>
-              <form onSubmit={handleSubmit}>
-                <input
-                  type="text"
-                  placeholder="Valor"
-                  onChange={handleChange}
-                  name="valor"
-                  value={formData.valor}
-                  className="form-control"
-                />
-                <input
-                  type="text"
-                  placeholder="Descricao"
-                  onChange={handleChange}
-                  name="descricao"
-                  value={formData.descricao}
-                  className="form-control"
-                />
-                <input
-                  type="text"
-                  placeholder="URL Imagem"
-                  onChange={handleChange}
-                  name="imagem"
-                  value={formData.imagem}
-                  className="form-control"
-                />
-                <button type="submit" className="btn btn-primary mb-2">
-                  Enviar
-                </button>
-              </form>
-              <div>
-                <button onClick={(e) => handleClick(e)} className="btn btn-danger mx-2">
-                  Deletar
-                </button>
-                <Link to={`/editar/empresa/${id}`} className="btn btn-primary">
-                  Editar Empresa
-                </Link>
+              <div className="centered-container">
+                <h3>Cadastrar Vantagem</h3>
+                <form onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
+                  <input
+                    type="text"
+                    placeholder="Valor"
+                    onChange={handleChange}
+                    name="valor"
+                    value={formData.valor}
+                    className="form-control"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Descricao"
+                    onChange={handleChange}
+                    name="descricao"
+                    value={formData.descricao}
+                    className="form-control"
+                  />
+                  <input
+                    type="text"
+                    placeholder="URL Imagem"
+                    onChange={handleChange}
+                    name="imagem"
+                    value={formData.imagem}
+                    className="form-control"
+                  />
+                  <button type="submit" className="btn btn-success mb-5">
+                    Enviar
+                  </button>
+                </form>
+                <div>
+                  <button onClick={(e) => handleClick(e)} className="btn btn-danger mx-2">
+                    Deletar
+                  </button>
+                  <Link to={`/editar/empresa/${id}`} className="btn btn-primary">
+                    Editar Empresa
+                  </Link>
+                </div>
               </div>
             </>
           )}
