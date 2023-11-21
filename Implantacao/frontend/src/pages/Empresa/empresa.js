@@ -9,6 +9,7 @@ function Empresa() {
 
   const { id } = useParams();
   const myAccount = getId() === id && isEmpresa();
+  const [loadingButton, setLoadingButton] = useState(null);
 
   const [formData, setFormData] = useState({
     empresaId: id,
@@ -49,6 +50,7 @@ function Empresa() {
 
   async function handleCompra(vantagemID, vantagemValor) {
     try {
+      setLoadingButton(vantagemID);
       await api.post("/compra/cadastrar", {
         alunoId: getId(),
         vantagensIds: [vantagemID],
@@ -58,6 +60,8 @@ function Empresa() {
       alert("Compra realizada!");
     } catch (err) {
       alert(err.response.data);
+    } finally {
+      setLoadingButton(null);  // Desativar indicador de carregamento, independentemente do resultado
     }
   }
 
@@ -125,11 +129,13 @@ function Empresa() {
                         <button
                           type="button"
                           onClick={() => {
+                            setLoadingButton(vantagem.id);
                             handleCompra(vantagem.id, vantagem.valor);
                           }}
-                          className="btn btn-primary"
+                          className={`btn btn-primary ${loadingButton === vantagem.id ? 'disabled' : ''}`}
+                          disabled={loadingButton === vantagem.id}
                         >
-                          Comprar
+                          {loadingButton === vantagem.id ? <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> : 'Comprar'}
                         </button>
                       </th>
                     )}
